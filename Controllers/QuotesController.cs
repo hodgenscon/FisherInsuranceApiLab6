@@ -17,7 +17,7 @@ using FisherInsuranceApi.Data;
         {
             return Ok("");
         }
-    // POST api/auto/quotes
+    // POST api/quotes
         [HttpPost]
         public IActionResult Post([FromBody]Quote quote)
 
@@ -27,20 +27,20 @@ using FisherInsuranceApi.Data;
 
         }
 
-    // GET api/auto/quotes/5
+    // GET api/quotes/5
         [HttpGetAttribute("{id}")]
 
         public IActionResult Get(int id)
         {
             return Ok(db.RetrieveQuote(id));
         }
-    // PUT api/auto/quotes/id
+    // PUT api/quotes/id
         [HttpPutAttribute("{id}")]
         public IActionResult Put([FromBody]Quote quote)
         {
             return Ok(db.UpdateQuote(quote));
         }
-    // DELETE api/auto/quotes/id
+    // DELETE api/quotes/id
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
