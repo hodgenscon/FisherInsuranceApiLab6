@@ -1,17 +1,28 @@
 using Microsoft.AspNetCore.Mvc;
+using FisherInsuranceApi.Models;
+using FisherInsuranceApi.Data;
     public class ClaimsController : Controller
     {
+        private IMemoryStore db;
+        public ClaimsController(IMemoryStore repo)
+        {
+            db=repo;
+        }
+        public IActionResult GetClaims()
+        {
+            return Ok(db.RetrieveAllClaims);
+        }
         public IActionResult Index()
         {
             return Ok("");
         }
     // POST api/claims/claim
         [HttpPost]
-        public IActionResult Post([FromBody]string value)
+        public IActionResult Post([FromBody]Claim claim)
 
         {
 
-            return Created("", value);
+            return Ok(db.CreateClaim(claim));
 
         }
 
@@ -20,7 +31,7 @@ using Microsoft.AspNetCore.Mvc;
 
         public IActionResult Get(int id)
         {
-            return Ok("The id is : "+id);
+            return Ok(db.RetrieveClaim(id));
         }
     // PUT api/claims/claim/id
         [HttpPutAttribute("{id}")]
@@ -32,6 +43,7 @@ using Microsoft.AspNetCore.Mvc;
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            return Delete(id);
+            db.DeleteClaim(id);
+            return Ok();
         }
     }
