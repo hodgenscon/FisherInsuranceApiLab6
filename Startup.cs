@@ -8,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using FisherInsuranceApi.Data;
+using FisherInsuranceApi.Models;
 
 namespace FisherInsuranceApi
 {
@@ -40,6 +41,10 @@ namespace FisherInsuranceApi
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
 
+            app.UseDefaultFiles();
+
+            app.UseStaticFiles();
+            
             app.UseMvc();
         }
     }
