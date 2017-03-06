@@ -3,15 +3,14 @@ using FisherInsuranceApi.Models;
 using FisherInsuranceApi.Data;
     public class QuotesController : Controller
     {
-        private IMemoryStore db;
 
-        public QuotesController(IMemoryStore repo)
+        public QuotesController()
         {
-            db=repo;
+
         }
         public IActionResult GetQuotes()
         {
-            return Ok(db.RetrieveAllQuotes);
+            return Ok();
         }
         public IActionResult Index()
         {
@@ -23,7 +22,7 @@ using FisherInsuranceApi.Data;
 
         {
 
-            return Ok(db.CreateQuote(quote));
+            return Ok();
 
         }
 
@@ -32,19 +31,19 @@ using FisherInsuranceApi.Data;
 
         public IActionResult Get(int id)
         {
-            return Ok(db.RetrieveQuote(id));
+            return Ok();
         }
     // PUT api/quotes/id
         [HttpPutAttribute("{id}")]
         public IActionResult Put([FromBody]Quote quote)
         {
-            return Ok(db.UpdateQuote(quote));
+            return Ok();
         }
     // DELETE api/quotes/id
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            db.DeleteQuote(id);
+
             return Ok();
         }
     }
